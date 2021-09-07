@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 목록</title>
+</head>
+<body>
+<h3>리뷰 목록</h3>
+<table border = "1">
+    <tr><th>작성자</th><th>책 이름</th><th>점수</th></tr>
+    {% for r in rlist %}
+    <tr>
+        <td>{{r.reviewer}}</td>
+        <td><a href="/review/detail/{{r.review_no}}">{{r.book_name}}</a></td>
+        <td>{{r.score}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

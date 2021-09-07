@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 페이지</title>
+</head>
+<body>
+<h3>주문 페이지</h3>
+<form action="/order/add" method="post">
+<table border="1">
+    <tr><th>주문자</th><td><input type="text" name="orderer" value="{{session.login_id}}" readonly></td></tr>
+    <tr><th>책 이름</th><td><input type="text" name="book_name" value=""></td></tr>
+    <tr><th>책 타입</th><td><input type="text" name="book_type" value=""></td></tr>
+    <tr><th>구매/대여</th><td><input type="text" name="buy_rental"></td></tr>
+    <tr><th>주문</th><td><input type="submit" value="주문"></td></tr>
+</table>
+</form>
+</body>
+</html>

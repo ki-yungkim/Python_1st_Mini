@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>메인페이지</title>
+</head>
+<body>
+{% if session.flag == False %}
+    <a href="/member/join">회원가입</a>
+    <a href="/member/login">로그인</a>
+{% else %}
+    <a href="/member/logout">로그아웃</a>
+    <a href="/member/myInfo">내 정보 보기</a>
+    <a href="/order/add">주문페이지</a>
+    <a href="/order/myOrder">내 주문 확인</a>
+    <a href="/review/myReview">내 리뷰 확인</a>
+    <a href="/review/add">리뷰작성</a>
+{% endif %}
+</body>
+</html>

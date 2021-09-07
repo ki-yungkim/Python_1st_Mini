@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 목록</title>
+    <script>
+        function a(){
+            location.href="/order/getbyorderer/"+f.orderer.value
+        }
+        function b(){
+            location.href="/order/getbytitle/"+f.book_name.value
+        }
+    </script>
+</head>
+<body>
+<h3>주문 목록</h3>
+<table border = "1">
+    <tr><th>주문번호</th><th>주문자</th><th>책 이름</th><th>분류</th><th>구매/대여 여부</th><th>주문날짜</th><th>유효기간</th></tr>
+    {% for o in olist %}
+    <tr>
+        <td>{{o.order_no}}</td>
+        <td>{{o.orderer}}</td>
+        <td>{{o.book_name}}</td>
+        <td>{{o.book_type}}</td>
+        <td>{{o.buy_rental}}</td>
+        <td>{{o.date}}</td>
+        <td>{{o.expire}}</td>
+    </tr>
+    {% endfor %}
+</table><br/>
+
+<form name="f">
+    주문자로 검색<input type="text" name="orderer"><input type="button" value="검색" onclick="a()"><br/>
+    제목 검색<input type="text" name="book_name"><input type="button" value="검색" onclick="b()"><br/>
+</form>
+
+</body>
+</html>
