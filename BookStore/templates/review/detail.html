@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>리뷰 내용 페이지</title>
+    <script>
+        function del(){
+            location.href='/review/del?num={{r.review_no}}'
+        }
+    </script>
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
 <h3>리뷰 내용 페이지</h3>
 <form action="/review/edit" method="post">
     <table border="1">
+        <tr><th>리뷰 번호</th><td><input type="text" value="{{r.review_no}}" name="review_no" readonly></td></tr>
         <tr><th>작성자</th><td><input type="text" value="{{r.reviewer}}" name="reviewer" readonly></td></tr>
-        <tr><th>책 이름</th><td><input type="text" value="{{r.book_name}}" name="book_name" readonly></td></tr>
-        <tr><th>리뷰 내용</th><td><input type="textarea" value="{{r.content}}" name="content"></td></tr>
+        <tr><th>책 이름</th><td><input type="text" value="{{r.book_title}}" name="book_title" readonly></td></tr>
+        <tr><th>리뷰 내용</th><td><input type="text" value="{{r.content}}" name="content"></td></tr>
         <tr><th>점수</th><td><input type="number" value="{{r.score}}" name="score"></td></tr>
         {% if flag %}
-        <tr><th>수정/삭제</th><td><input type="submit" value="수정"><input type="button" value="삭제"></td></tr>
+        <tr><th>수정/삭제</th><td><input type="submit" value="수정">
+                                <input type="button" value="삭제" onclick="del()"></td></tr>
         {% endif %}
     </table>
 </form>
+<a href="/">메인페이지로</a>
 </body>
 </html>

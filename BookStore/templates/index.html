@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>메인페이지</title>
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
 {% if session.flag == False %}
     <a href="/member/join">회원가입</a>
@@ -11,10 +12,15 @@
 {% else %}
     <a href="/member/logout">로그아웃</a>
     <a href="/member/myInfo">내 정보 보기</a>
-    <a href="/order/add">주문페이지</a>
     <a href="/order/myOrder">내 주문 확인</a>
-    <a href="/review/myReview">내 리뷰 확인</a>
-    <a href="/review/add">리뷰작성</a>
+    <a href="/review/myReview">내 리뷰 확인</a><br/>
+    <a href="/book/list">책 목록 보기</a><br/>
+{% endif %}
+
+{% if session.login_id == 'admin' %}
+    <a href="/book/add">책 등록</a>
+    <a href="/order/list">전체 주문 보기</a>
+    <a href="/review/list">전체 리뷰 보기</a>
 {% endif %}
 </body>
 </html>

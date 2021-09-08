@@ -6,6 +6,7 @@ import config
 import routes.mem_route as mr
 import routes.ord_route as ort
 import routes.rev_route as rrt
+import routes.book_route as bkt
 # 플라스크 객체 생성
 app = Flask(__name__)
 
@@ -19,6 +20,7 @@ app.config.from_object(config)
 app.register_blueprint(mr.bp)
 app.register_blueprint(ort.bp)
 app.register_blueprint(rrt.bp)
+app.register_blueprint(bkt.bp)
 
 
 # ORM

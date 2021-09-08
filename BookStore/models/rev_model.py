@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import session
 from datetime import datetime
 from models.mem_model import Review
+
 db = SQLAlchemy()
 migrate = Migrate()
 
@@ -28,4 +29,18 @@ class ReviewService:
     # 리뷰어의 모든 리뷰 검색
     def getByReviewer(self, reviewer):
         return Review.query.filter(Review.reviewer == reviewer)
+
+    # 리뷰 수정
+    def editReview(self, r:Review):
+        r2 = self.getReview(r.review_no)
+        r2.content = r.content
+        r2.score = r.score
+        r2.date = datetime.now()
+        db.session.commit()
+
+    # 리뷰 삭제
+    def delReview(self, review_no):
+        r = Review.query.get(review_no)
+        db.session.delete(r)
+        db.session.commit()
 

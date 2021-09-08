@@ -8,31 +8,47 @@
             location.href="/order/getbyorderer/"+f.orderer.value
         }
         function b(){
-            location.href="/order/getbytitle/"+f.book_name.value
+            location.href="/order/getbytitle/"+f.book_title.value
         }
     </script>
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
 <h3>주문 목록</h3>
-<table border = "1">
-    <tr><th>주문번호</th><th>주문자</th><th>책 이름</th><th>분류</th><th>구매/대여 여부</th><th>주문날짜</th><th>유효기간</th></tr>
+<table border = "1" id="list-table">
+    <tr><th>주문번호</th><th>주문자</th><th>책 이름</th><th>분류</th><th>구매/대여 여부</th><th>주문날짜</th><th>유효기간</th><th>리뷰쓰기</th><th>주문취소</th></tr>
     {% for o in olist %}
     <tr>
         <td>{{o.order_no}}</td>
         <td>{{o.orderer}}</td>
-        <td>{{o.book_name}}</td>
+        <td>{{o.book_title}}</td>
         <td>{{o.book_type}}</td>
         <td>{{o.buy_rental}}</td>
-        <td>{{o.date}}</td>
+        <td>{{o.date.strftime("%c")}}</td>
         <td>{{o.expire}}</td>
+        <td><input type="button" value="리뷰작성"></td>
+        <td><input type="button" value="주문취소"></td>
     </tr>
     {% endfor %}
 </table><br/>
 
 <form name="f">
     주문자로 검색<input type="text" name="orderer"><input type="button" value="검색" onclick="a()"><br/>
-    제목 검색<input type="text" name="book_name"><input type="button" value="검색" onclick="b()"><br/>
+    제목 검색<input type="text" name="book_title"><input type="button" value="검색" onclick="b()"><br/>
 </form>
+<a href="/">메인페이지로</a>
+<script>
+         var table = document.querySelector('#list-table');
+         table.onclick = function(e){
+                if(e.target.value === "리뷰작성"){
+                   book_title = e.target.parentNode.parentNode.children[2].textContent.trim();
+                   location.href = "/review/add/" + book_title
 
+                }else if(e.target.value === "주문취소"){
+                   order_no = e.target.parentNode.parentNode.children[0].textContent.trim();
+                   location.href = "/order/delete/" + order_no
+                }
+         }
+     </script>
 </body>
 </html>

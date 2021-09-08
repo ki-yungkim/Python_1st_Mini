@@ -39,7 +39,13 @@ class OrderService:
 
     # 제목으로 검색
     def getByTitle(self, tit):
-        return Order.query.filter(Order.book_name.like('%'+tit+'%')).all()
+        return Order.query.filter(Order.book_title.like('%'+tit+'%')).all()
+
+    # 주문 삭제
+    def delReview(self, order_no):
+        o = Order.query.get(order_no)
+        db.session.delete(o)
+        db.session.commit()
 
 
 

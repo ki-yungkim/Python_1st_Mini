@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>리뷰 목록</title>
 </head>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
 <h3>리뷰 목록</h3>
 <table border = "1">
@@ -11,10 +12,11 @@
     {% for r in rlist %}
     <tr>
         <td>{{r.reviewer}}</td>
-        <td><a href="/review/detail/{{r.review_no}}">{{r.book_name}}</a></td>
+        <td><a href="/review/detail/{{r.review_no}}">{{r.book_title}}</a></td>
         <td>{{r.score}}</td>
     </tr>
     {% endfor %}
 </table>
+<a href="/">메인페이지로</a>
 </body>
 </html>

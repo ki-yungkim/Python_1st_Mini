@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>책 목록</title>
+
+    <script>
+        function a(){
+            location.href = "/book/getbybooktitle/" + f.book_title.value
+        }
+        function b(){
+            location.href = "/book/getbybookauthor/" + f.book_author.value
+        }
+    </script>
+
+</head>
+<body>
+     <h3>도서 목록</h3>
+    <table border="1" id="list-table">
+        <tr>
+            <th>책 번호</th>
+            <th>도서명</th>
+            <th>저자</th>
+            <th>책 타입</th>
+            <th>가격</th>
+            <th>재고</th>
+            <th>리뷰</th>
+            <th>구매/대여</th>
+            {% if session.login_id == 'admin' %}
+                <th>삭제</th>
+            {% endif %}
+        </tr>
+        {% for pb in pblist %}
+        <tr>
+            <td>
+                {{pb.book_no}}
+            </td>
+            <td>
+                <a href="/book/detail/{{pb.book_no}}">{{pb.book_title}}</a>
+            </td>
+            <td>{{pb.book_author}}</td>
+            <td>{{pb.book_type}}</td>
+            <td>{{'{:,}'.format(pb.book_price|int)}}</td>
+            <td>{{'{:,}'.format(pb.book_amount|int)}}</td>
+            <td><input type="button" value="리뷰" onclick="review()"></td>
+            <td><input type="button" value="구매/대여"></td>
+            {% if session.login_id == 'admin' %}
+                <td><input type="button" value="삭제"></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <form name="f">
+       도서명으로 검색  <input type="text" name="book_title">
+        <input type="button" value="검색" onclick="a()"><br>
+
+         지은이로 검색  <input type="text" name="book_author">
+        <input type="button" value="검색" onclick="b()">
+    </form>
+     <a href="/book/list">목록 전체보기</a><br/>
+     <script>
+         var table = document.querySelector('#list-table');
+         table.onclick = function(e){
+                if(e.target.value === "수정"){
+                   book_no = e.target.parentNode.parentNode.children[0].textContent.trim();
+                   location.href = "/book/edit/" + book_no
+
+                }else if(e.target.value === "삭제"){
+                   book_no = e.target.parentNode.parentNode.children[0].textContent.trim();
+                   location.href = "/book/delete/" + book_no
+                }else if(e.target.value === "리뷰"){
+                   book_title = e.target.parentNode.parentNode.children[1].textContent.trim();
+                   location.href = "/review/getbybooktitle/" + book_title
+                }else if(e.target.value === "구매/대여"){
+                   book_title = e.target.parentNode.parentNode.children[1].textContent.trim();
+                   location.href = "/order/getbybooktitle/" + book_title
+                }
+         }
+     </script>
+<a href="/">메인페이지로</a>
+</body>
+</html>

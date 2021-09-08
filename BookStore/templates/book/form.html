@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도서 등록</title>
+</head>
+<body>
+<h3>등록페이지</h3>
+    <form action="/book/add" method="post">
+        <table border="1">
+            <tr>
+                <th>도서명</th>
+                <td><input type="text" name="book_title" ></td>
+            </tr>
+            <tr>
+                <th>도서타입</th>
+                <td><input type="text" name="book_type" ></td>
+            </tr>
+            <tr>
+                <th>지은이</th>
+                <td><input type="text" name="book_author"></td>
+            </tr>
+
+            <tr>
+                <th>가격</th>
+                <td><input type="text" name="book_price"></td>
+            </tr>
+            <tr>
+                <th>수량</th>
+                <td><input type="number" name="book_amount"></td>
+            </tr>
+            <tr>
+                <th>등록</th>
+                <td>
+                    <input type="submit" value="등록">
+                </td>
+            </tr>
+        </table>
+    </form>
+<a href="/">메인페이지로</a>
+</body>
+</html>
