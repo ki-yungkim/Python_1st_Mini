@@ -2,41 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <title>도서 등록</title>
 </head>
 <body>
 <h3>등록페이지</h3>
-    <form action="/book/add" method="post">
-        <table border="1">
+    <table class="table">
+        <thead>
             <tr>
-                <th>도서명</th>
-                <td><input type="text" name="book_title" ></td>
+                <th scope="col">도서명</th>
+                <th scope="col">도서타입</th>
+                <th scope="col">지은이</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+                <th scope="col">등록</th>
             </tr>
-            <tr>
-                <th>도서타입</th>
-                <td><input type="text" name="book_type" ></td>
-            </tr>
-            <tr>
-                <th>지은이</th>
-                <td><input type="text" name="book_author"></td>
-            </tr>
+        </thead>
+        <form action="/book/add" method="post">
+            <tbody>
+                <tr>
+                    <td><input type="text" name="book_title" style="border:1 solid black;"></td>
+                    <td>
+                        <select name="book_type">
+                            <option value="" disabled>--선택--</option>
+                            <option value="종이책">종이책</option>
+                            <option value="EBOOK">EBOOK</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="book_author" style="border:1 solid black;"></td>
+                    <td><input type="text" name="book_price" style="border:1 solid black;"></td>
+                    <td><input type="number" name="book_amount" style="border:1 solid black;"></td>
+                    <td><input type="submit" value="등록" class="btn-primary btn" style="border:0 solid black;"></td>
+                </tr>
+            </tbody>
+        </form>
+    </table>
 
-            <tr>
-                <th>가격</th>
-                <td><input type="text" name="book_price"></td>
-            </tr>
-            <tr>
-                <th>수량</th>
-                <td><input type="number" name="book_amount"></td>
-            </tr>
-            <tr>
-                <th>등록</th>
-                <td>
-                    <input type="submit" value="등록">
-                </td>
-            </tr>
-        </table>
-    </form>
 <a href="/">메인페이지로</a>
 </body>
 </html>

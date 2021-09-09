@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        div.input-group {
+            width: 20%;
+            float: right;
+        }
+
+    </style>
     <title>주문 목록</title>
     <script>
         function a(){
@@ -12,31 +20,60 @@
         }
     </script>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
-<h3>주문 목록</h3>
-<table border = "1" id="list-table">
-    <tr><th>주문번호</th><th>주문자</th><th>책 이름</th><th>분류</th><th>구매/대여 여부</th><th>주문날짜</th><th>유효기간</th><th>리뷰쓰기</th><th>주문취소</th></tr>
+<h3>{{session.login_id}}님의 주문 목록</h3>
+<table class="table" id="list-table">
+    <thead>
+        <tr>
+            <th scope="col">주문번호</th>
+            <th scope="col">주문자</th>
+            <th scope="col">책 이름</th>
+            <th scope="col">분류</th>
+            <th scope="col">구매/대여 여부</th>
+            <th scope="col">주문날짜</th>
+            <th scope="col">리뷰쓰기</th>
+            <th scope="col">주문취소</th>
+        </tr>
+    </thead>
     {% for o in olist %}
-    <tr>
-        <td>{{o.order_no}}</td>
-        <td>{{o.orderer}}</td>
-        <td>{{o.book_title}}</td>
-        <td>{{o.book_type}}</td>
-        <td>{{o.buy_rental}}</td>
-        <td>{{o.date.strftime("%c")}}</td>
-        <td>{{o.expire}}</td>
-        <td><input type="button" value="리뷰작성"></td>
-        <td><input type="button" value="주문취소"></td>
-    </tr>
+    <tbody>
+        <tr>
+            <td>{{o.order_no}}</td>
+            <td>{{o.orderer}}</td>
+            <td>{{o.book_title}}</td>
+            <td>{{o.book_type}}</td>
+            <td>{{o.buy_rental}}</td>
+            <td>{{o.date.strftime("%c")}}</td>
+            <td><input type="button" value="리뷰작성" class="btn-primary btn"></td>
+            <td><input type="button" value="주문취소" class="btn-primary btn"></td>
+        </tr>
     {% endfor %}
-</table><br/>
+    </tbody>
+</table>
 
+<form name="f">
+    <div class="input-group">
+        <input type="text" class="form-control" name="orderer" placeholder="주문자로 검색" >
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick="a()">검색</button>
+        </span>
+    </div>
+    <div class="input-group">
+        <input type="text" class="form-control" name="book_title" placeholder="책 제목으로 검색">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick="b()">검색</button>
+        </span>
+    </div>
+</form>
+<!--
 <form name="f">
     주문자로 검색<input type="text" name="orderer"><input type="button" value="검색" onclick="a()"><br/>
     제목 검색<input type="text" name="book_title"><input type="button" value="검색" onclick="b()"><br/>
 </form>
+-->
+<a href="/order/myOrder">검색초기화</a><br>
 <a href="/">메인페이지로</a>
+
 <script>
          var table = document.querySelector('#list-table');
          table.onclick = function(e){

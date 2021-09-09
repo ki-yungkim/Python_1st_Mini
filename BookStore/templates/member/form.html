@@ -2,18 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='signin.css') }}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
     <title>회원가입</title>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
+
 <body>
-<h3>회원가입</h3>
-<form action="/member/join" method="post">
-    id:<input type="text" name="id"><br/>
-    pwd:<input type="text" name="pwd"><br/>
-    name:<input type="text" name="name"><br/>
-    email:<input type="text" name="email"><br/>
-    mobile:<input type="text" name="mobile"><br/>
-    <input type="submit" value="회원가입"><br/>
+
+<form class="form-signin" action="/member/join" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
+    <input type="text" id="id" name="id" class="form-control" placeholder="아이디" required autofocus>
+    <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required>
+    <input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
+    <input type="text" id="email" name="email" class="form-control" placeholder="이메일" required>
+    <input type="text" id="mobile" name="mobile" class="form-control" placeholder="연락처" required>
+    <div class="mb-3"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
+
 </form>
 </body>
 </html>

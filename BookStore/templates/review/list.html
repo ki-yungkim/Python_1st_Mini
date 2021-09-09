@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <title>리뷰 목록</title>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
 <h3>리뷰 목록</h3>
-<table border = "1">
-    <tr><th>작성자</th><th>책 이름</th><th>점수</th></tr>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">책 제목</th>
+            <th scope="col">점수</th>
+        </tr>
+    </thead>
     {% for r in rlist %}
-    <tr>
-        <td>{{r.reviewer}}</td>
-        <td><a href="/review/detail/{{r.review_no}}">{{r.book_title}}</a></td>
-        <td>{{r.score}}</td>
-    </tr>
+     <tbody>
+        <tr>
+            <td>{{r.reviewer}}</td>
+            <td><a href="/review/detail/{{r.review_no}}">{{r.book_title}}</a></td>
+            <td>{{r.score}}</td>
+        </tr>
     {% endfor %}
+    </tbody>
 </table>
 <a href="/">메인페이지로</a>
 </body>

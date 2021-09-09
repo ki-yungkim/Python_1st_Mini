@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        div.input-group {
+            width: 20%;
+            float: right;
+        }
+
+    </style>
     <title>책 목록</title>
 
     <script>
@@ -16,49 +24,58 @@
 </head>
 <body>
      <h3>도서 목록</h3>
-    <table border="1" id="list-table">
-        <tr>
-            <th>책 번호</th>
-            <th>도서명</th>
-            <th>저자</th>
-            <th>책 타입</th>
-            <th>가격</th>
-            <th>재고</th>
-            <th>리뷰</th>
-            <th>구매/대여</th>
-            {% if session.login_id == 'admin' %}
-                <th>삭제</th>
-            {% endif %}
-        </tr>
-        {% for pb in pblist %}
-        <tr>
-            <td>
-                {{pb.book_no}}
-            </td>
-            <td>
-                <a href="/book/detail/{{pb.book_no}}">{{pb.book_title}}</a>
-            </td>
-            <td>{{pb.book_author}}</td>
-            <td>{{pb.book_type}}</td>
-            <td>{{'{:,}'.format(pb.book_price|int)}}</td>
-            <td>{{'{:,}'.format(pb.book_amount|int)}}</td>
-            <td><input type="button" value="리뷰" onclick="review()"></td>
-            <td><input type="button" value="구매/대여"></td>
-            {% if session.login_id == 'admin' %}
-                <td><input type="button" value="삭제"></td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </table>
+     <table class="table" id="list-table">
+          <thead>
+            <tr>
+              <th scope="col">책 번호</th>
+              <th scope="col">도서명</th>
+              <th scope="col">저자</th>
+              <th scope="col">책 타입</th>
+              <th scope="col">가격</th>
+              <th scope="col">재고</th>
+              <th scope="col">리뷰</th>
+              <th scope="col">구매/대여</th>
+              {% if session.login_id == 'admin' %}
+              <th scope="col">삭제</th>
+              {% endif %}
+            </tr>
+          </thead>
 
+          <tbody>
+            {% for pb in pblist %}
+            <tr>
+              <td>{{pb.book_no}}</td>
+              <td>{{pb.book_title}}</td>
+              <td>{{pb.book_author}}</td>
+              <td>{{pb.book_type}}</td>
+              <td>{{'{:,}'.format(pb.book_price|int)}}</td>
+              <td>{{'{:,}'.format(pb.book_amount|int)}}</td>
+              <td><input type="button" value="리뷰" onclick="review()" class="btn-primary btn" style="border:0 solid black;"></td>
+              <td><input type="button" value="구매/대여" class="btn-primary btn" style="border:0 solid black;"></td>
+              {% if session.login_id == 'admin' %}
+                <td><input type="button" value="삭제" class="btn-primary btn"style="border:0 solid black;"></td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
 
     <form name="f">
-       도서명으로 검색  <input type="text" name="book_title">
-        <input type="button" value="검색" onclick="a()"><br>
-
-         지은이로 검색  <input type="text" name="book_author">
-        <input type="button" value="검색" onclick="b()">
+        <div class="input-group">
+            <input type="text" class="form-control" name="book_title" placeholder="도서명으로 검색" >
+            <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button" onclick="a()">검색</button>
+            </span>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" name="book_author" placeholder="지은이로 검색">
+            <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button" onclick="b()">검색</button>
+            </span>
+        </div>
     </form>
+
+
      <a href="/book/list">목록 전체보기</a><br/>
      <script>
          var table = document.querySelector('#list-table');

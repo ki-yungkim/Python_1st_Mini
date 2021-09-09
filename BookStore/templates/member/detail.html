@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
     <title>내 정보 보기</title>
     <script>
         function del(){
@@ -9,17 +12,37 @@
         }
     </script>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
-<h3>{{m.id}}님의 정보</h3>
-<form action="/member/edit" method="post">
-    pwd: <input type="text" name="pwd" value = {{m.pwd}}><br/>
-    name: {{m.name}}<br/>
-    email: <input type="text" name="email" value = {{m.email}}><br/>
-    mobile: {{m.mobile}}<br/>
-    <input type="submit" value="수정">
-    <input type="button" value="회원 탈퇴" onclick="del()">
-</form>
+
+<h2>{{m.id}}님의 정보</h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">아이디</th>
+              <th scope="col">비밀번호</th>
+              <th scope="col">이름</th>
+              <th scope="col">이메일</th>
+              <th scope="col">연락처</th>
+              <th scope="col">수정</th>
+              <th scope="col">회원탈퇴</th>
+            </tr>
+          </thead>
+          <form action="/member/edit" method="post">
+          <tbody>
+            <tr>
+              <td><input type="text" name="id" value = "{{m.id}}" readonly style="border:0 solid black;"></td>
+              <td><input type="password" name="pwd" value = "{{m.pwd}}" style="border:0 solid black;"><br/></td>
+              <td><input type="text" name="name" value = "{{m.name}}" readonly style="border:0 solid black;"></td>
+              <td><input type="text" name="email" value = "{{m.email}}" style="border:0 solid black;"></td>
+              <td><input type="text" name="pwd" value = "{{m.mobile}}" style="border:0 solid black;"></td>
+              <td><input type="submit" class="btn-primary btn" value="수정" style="border:0 solid black;"></td>
+              <td><input type="button" class="btn-primary btn" value="회원 탈퇴" onclick="del()" style="border:0 solid black;"></td>
+            </tr>
+          </tbody>
+          </form>
+        </table>
+
 <a href="/">메인페이지로</a>
 </body>
 </html>

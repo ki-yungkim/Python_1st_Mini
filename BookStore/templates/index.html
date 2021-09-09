@@ -2,25 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
     <title>메인페이지</title>
-</head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
-<body>
-{% if session.flag == False %}
-    <a href="/member/join">회원가입</a>
-    <a href="/member/login">로그인</a>
-{% else %}
-    <a href="/member/logout">로그아웃</a>
-    <a href="/member/myInfo">내 정보 보기</a>
-    <a href="/order/myOrder">내 주문 확인</a>
-    <a href="/review/myReview">내 리뷰 확인</a><br/>
-    <a href="/book/list">책 목록 보기</a><br/>
-{% endif %}
 
-{% if session.login_id == 'admin' %}
-    <a href="/book/add">책 등록</a>
-    <a href="/order/list">전체 주문 보기</a>
-    <a href="/review/list">전체 리뷰 보기</a>
-{% endif %}
+     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+<link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='cover.css') }}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="/">Home</a>
+                      {% if session.flag == False %}
+                        <a class="nav-link" href="/member/join">회원가입</a>
+                        <a class="nav-link" href="/member/login">로그인</a>
+                      {% else %}
+                        <a class="nav-link" href="/member/logout">로그아웃</a>
+                        <a class="nav-link" href="/member/myInfo">내 정보 보기</a>
+                        <a class="nav-link" href="/order/myOrder">내 주문 확인</a>
+                        <a class="nav-link" href="/review/myReview">내 리뷰 확인</a>
+                        <a class="nav-link" href="/book/list">책 목록 보기</a>
+                      {% endif %}
+                </nav>
+                <nav class="nav nav-masthead justify-content-center">
+                      {% if session.login_id == 'admin' %}
+                        <a class="nav-link" href="/book/add">책 등록</a>
+                        <a class="nav-link" href="/order/list">전체 주문 보기</a>
+                        <a class="nav-link" href="/review/list">전체 리뷰 보기</a>
+                      {% endif %}
+                </nav>
+            </div>
+        </header>
+    </div>
 </body>
 </html>

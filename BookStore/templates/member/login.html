@@ -2,14 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='signin.css') }}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
     <title>로그인</title>
 </head>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <body>
-<form action="/member/login" method="post">
-    id=<input type="text" name="id"><br/>
-    pwd=<input type="text" name="pwd"><br/>
-    <input type="submit" value="로그인"><br/>
+<form class="form-signin" action="/member/login" method="post">
+  <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
+
+  <input type="text" id="id" name="id" class="form-control" placeholder="아이디" required autofocus>
+  <input type="password" id="pwd" name="pwd" class="form-control" placeholder="비밀번호" required>
+  <div class="mb-3"></div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+
 </form>
 </body>
 </html>

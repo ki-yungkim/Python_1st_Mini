@@ -139,7 +139,6 @@ class BookService:
         print(book.book_amount)
         db.session.commit()
 
-
 class ReviewService:
     # 리뷰 작성
     def addReview(self, r:Review):
